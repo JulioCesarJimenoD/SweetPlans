@@ -16,4 +16,15 @@ class AgendaViewModel @Inject constructor(
     var nombreRegistro by mutableStateOf("")
     var descripcion by mutableStateOf("")
     var fecha by mutableStateOf("")
+    var data by mutableStateOf("")
+
+    //No validar la fecha
+
+    fun save(){
+        // hacer un iuState
+        //y hacer una validadcion
+
+
+    }
+
 }

@@ -10,5 +10,6 @@ data class RegistroAgenda(
     val registroId : Int,
     val nombreRegistro : String,
     val descripcion: String,
-    val fecha: DatePicker
+//    val fecha: DatePicker
+
 )
