@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ucne.edu.sweetplans.ui.Inicio.IncioScreen
 import ucne.edu.sweetplans.ui.Login.LoginScreen
 import ucne.edu.sweetplans.ui.Login.RegistroUsiario
 import ucne.edu.sweetplans.ui.navegation.Screen
@@ -49,7 +50,9 @@ fun MyApp(){
         composable(Screen.RegistroUsuarios.route){
             RegistroUsiario(navHostController = navHostController)
         }
-
+        composable(Screen.InicioScreen.route){
+            IncioScreen(navHostController = navHostController)
+        }
 
     }
 }
