@@ -9,14 +9,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ucne.edu.sweetplans.ui.Login.LoginScreen
+import ucne.edu.sweetplans.ui.Login.RegistroUsiario
+import ucne.edu.sweetplans.ui.navegation.Screen
+import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgenda
 import ucne.edu.sweetplans.ui.theme.SweetPlansTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +42,14 @@ class MainActivity : ComponentActivity() {
 fun MyApp(){
     val navHostController = rememberNavController()
 
-
-    NavHost(navController = navHostController, startDestination = "Login"){
-        composable("Login"){
-            LoginScreen(navController = navHostController)
+    NavHost(navController = navHostController, startDestination = Screen.LoginScreen.route){
+        composable(Screen.LoginScreen.route){
+            LoginScreen(navHostController = navHostController)
         }
+        composable(Screen.RegistroUsuarios.route){
+            RegistroUsiario(navHostController = navHostController)
+        }
+
+
     }
 }

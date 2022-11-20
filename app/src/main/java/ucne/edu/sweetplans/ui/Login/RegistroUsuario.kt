@@ -23,14 +23,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import ucne.edu.sweetplans.R
-
+import ucne.edu.sweetplans.ui.navegation.Screen
 
 
 @OptIn(ExperimentalUnitApi::class)
 @Composable
-fun RegistroUsiario(navController: NavController) {
+fun RegistroUsiario(
+    navHostController: NavHostController,
+    usuarioViewModel: UsuarioViewModel = hiltViewModel()
+) {
 
     val image = painterResource(id = R.drawable.registro)
 
@@ -70,7 +75,7 @@ fun RegistroUsiario(navController: NavController) {
         ) {
 
                 Text(
-                    text = "Sign Up", fontSize = TextUnit(30F, TextUnitType.Sp),
+                    text = "Registrate", fontSize = TextUnit(30F, TextUnitType.Sp),
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         letterSpacing = TextUnit(2F, TextUnitType.Sp)
@@ -90,8 +95,8 @@ fun RegistroUsiario(navController: NavController) {
                     OutlinedTextField(
                         value = emailValue.value,
                         onValueChange = { emailValue.value = it },
-                        label = { Text(text = "Email Address") },
-                        placeholder = { Text(text = "Email Address") },
+                        label = { Text(text = "Email") },
+                        placeholder = { Text(text = "Email") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f)
                     )
@@ -155,16 +160,13 @@ fun RegistroUsiario(navController: NavController) {
                         Text(text = "Registrar", fontSize =  TextUnit(20F, TextUnitType.Sp))
                     }
 
-                    /*Text(
-                        text = "Login Instead",
+                    Text(
+                        text = "Login",
                         modifier = Modifier.clickable(onClick = {
-                            navController.navigate("login_page"){
-                                popUpTo = navController.graph.startDestinationId
-                                launchSingleTop = true
-                            }
+                            navHostController.navigate(Screen.LoginScreen.route)
                         })
                     )
-                    Spacer(modifier = Modifier.padding(20.dp))*/
+                    Spacer(modifier = Modifier.padding(20.dp))
 
 
 
