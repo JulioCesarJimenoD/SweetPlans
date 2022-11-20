@@ -1,5 +1,7 @@
 package ucne.edu.sweetplans.ui.Login
 
+import android.provider.ContactsContract.CommonDataKinds.Email
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import ucne.edu.sweetplans.R
+
 
 
 @OptIn(ExperimentalUnitApi::class)
@@ -78,8 +81,8 @@ fun RegistroUsiario(navController: NavController) {
                     OutlinedTextField(
                         value = nameValue.value,
                         onValueChange = { nameValue.value = it },
-                        label = { Text(text = "Name") },
-                        placeholder = { Text(text = "Name") },
+                        label = { Text(text = "Nombre") },
+                        placeholder = { Text(text = "Nombre") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f)
                     )
@@ -96,8 +99,8 @@ fun RegistroUsiario(navController: NavController) {
                     OutlinedTextField(
                         value = phoneValue.value,
                         onValueChange = { phoneValue.value = it },
-                        label = { Text(text = "Phone Number") },
-                        placeholder = { Text(text = "Phone Number") },
+                        label = { Text(text = "Tel.") },
+                        placeholder = { Text(text = "Tel.") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
@@ -127,8 +130,8 @@ fun RegistroUsiario(navController: NavController) {
                     OutlinedTextField(
                         value = confirmPasswordValue.value,
                         onValueChange = { confirmPasswordValue.value = it },
-                        label = { Text(text = "Confirm Password") },
-                        placeholder = { Text(text = "Confirm Password") },
+                        label = { Text(text = "Confirmar Contraseña") },
+                        placeholder = { Text(text = "Confirmar Contraseña") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f),
                         trailingIcon = {
@@ -149,10 +152,10 @@ fun RegistroUsiario(navController: NavController) {
                     Button(onClick = { }, modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp)) {
-                        Text(text = "Sign Up", fontSize =  TextUnit(20F, TextUnitType.Sp))
+                        Text(text = "Registrar", fontSize =  TextUnit(20F, TextUnitType.Sp))
                     }
-                    Spacer(modifier = Modifier.padding(20.dp))
-                    Text(
+
+                    /*Text(
                         text = "Login Instead",
                         modifier = Modifier.clickable(onClick = {
                             navController.navigate("login_page"){
@@ -161,7 +164,7 @@ fun RegistroUsiario(navController: NavController) {
                             }
                         })
                     )
-                    Spacer(modifier = Modifier.padding(20.dp))
+                    Spacer(modifier = Modifier.padding(20.dp))*/
 
 
 
@@ -169,3 +172,4 @@ fun RegistroUsiario(navController: NavController) {
         }
     }
 }
+

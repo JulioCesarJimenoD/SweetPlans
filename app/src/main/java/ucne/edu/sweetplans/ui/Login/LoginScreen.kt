@@ -1,5 +1,6 @@
 package ucne.edu.sweetplans.ui.Login
 
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -135,9 +136,20 @@ fun LoginScreen(navController: NavController){
                     )
                     Spacer(modifier = Modifier.padding(20.dp))
                 }
+           /* OutlinedButton(
+                onClick = {
+                   /* else if (!validateEmail(personaViewModel.correo)){
+                    Toast.makeText(context, "Revise el formato del campo Email", Toast.LENGTH_SHORT).show()*/
+                } }
+            ) {
 
+            }*/
         }
 
     }
 
+}
+fun validateEmail(correo: String) : Boolean{
+    var patron =  "([a-z0-9]+@[a-z]+\\.[a-z]{2,3})".toRegex()
+    return patron.containsMatchIn(correo)
 }
