@@ -4,27 +4,39 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ucne.edu.sweetplans.data.repository.RegistroAgendaRepository
+import kotlinx.coroutines.launch
+import ucne.edu.sweetplans.data.repository.AgendaRepository
+import ucne.edu.sweetplans.model.Agenda
 import javax.inject.Inject
+
+
 
 @HiltViewModel
 class AgendaViewModel @Inject constructor(
-    val registroAgendaRepository: RegistroAgendaRepository
+    private val agendaRepository: AgendaRepository
+
 ) : ViewModel() {
 
-    var nombreRegistro by mutableStateOf("")
+    var nombreAgenda by mutableStateOf("")
     var descripcion by mutableStateOf("")
-    var fecha by mutableStateOf("")
-    var data by mutableStateOf("")
+    var agenda = agendaRepository.getList()
+    private set
 
-    //No validar la fecha
-
-    fun save(){
-        // hacer un iuState
-        //y hacer una validadcion
-
-
+    fun Guardar(){
+        viewModelScope.launch {
+            agendaRepository.Insertar(
+                Agenda(
+                    agendaId = 0,
+                    nombreAgenda = nombreAgenda,
+                    descripcion = descripcion
+                )
+            )
+        }
     }
+
+
+
 
 }

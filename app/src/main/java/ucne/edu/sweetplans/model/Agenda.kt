@@ -4,12 +4,13 @@ import android.widget.DatePicker
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "RegistroAgenda")
-data class RegistroAgenda(
+@Entity(tableName = "Agendas")
+data class Agenda(
     @PrimaryKey(autoGenerate = true)
-    val registroId : Int,
-    val nombreRegistro : String,
+    val agendaId : Int? = null,
+    val nombreAgenda : String,
     val descripcion: String,
-//    val fecha: DatePicker
+
+//    hacer una variable para trabajar con el datapicker
 
 )

@@ -18,7 +18,6 @@ import ucne.edu.sweetplans.ui.Inicio.IncioScreen
 import ucne.edu.sweetplans.ui.Login.LoginScreen
 import ucne.edu.sweetplans.ui.Login.RegistroUsiario
 import ucne.edu.sweetplans.ui.navegation.Screen
-import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgenda
 import ucne.edu.sweetplans.ui.theme.SweetPlansTheme
 
 @AndroidEntryPoint
