@@ -101,7 +101,7 @@ fun RegistroUsiario(
                         modifier = Modifier.fillMaxWidth(0.8f)
                     )
 
-                    OutlinedTextField(
+                   /* OutlinedTextField(
                         value = phoneValue.value,
                         onValueChange = { phoneValue.value = it },
                         label = { Text(text = "Tel.") },
@@ -109,7 +109,7 @@ fun RegistroUsiario(
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
-                    )
+                    )*/
 
                     OutlinedTextField(
                         value = passwordValue.value,

@@ -149,7 +149,15 @@ fun LoginScreen(
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                     ) {
-                        Text(text = "Aceptar", fontSize = TextUnit(20F, TextUnitType.Sp))
+                        Text(
+                            text = "Aceptar",
+                            fontSize = TextUnit(20F, TextUnitType.Sp),
+                            modifier = Modifier.clickable(onClick = {
+                                navHostController.navigate(Screen.InicioScreen.route)
+
+                            })
+                        )
+
                     }
                 }
 
