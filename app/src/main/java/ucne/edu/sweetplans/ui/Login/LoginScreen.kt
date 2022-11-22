@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ucne.edu.sweetplans.ui.navegation.Screen
 import ucne.edu.sweetplans.ui.navegation.navegation
+import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
 
 @OptIn(ExperimentalUnitApi::class)
 //@Preview(showBackground = true, showSystemUi = true)
@@ -145,7 +146,9 @@ fun LoginScreen(
                     }
                 ) {
                     Button(
-                        onClick = { }, modifier = Modifier
+                        onClick = {
+                                  navHostController.navigate(Screen.ConsultaScreen.route)
+                        }, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                     ) {
@@ -164,10 +167,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.padding(20.dp))
                 Text(
                     text = "Registrar",
-                    modifier = Modifier.clickable(onClick = {
-                        navHostController.navigate(Screen.RegistroUsuarios.route)
-
-                    })
+                    modifier = Modifier.clickable(onClick = {navHostController.navigate(Screen.RegistroUsuarios.route)})
                 )
                 Spacer(modifier = Modifier.padding(20.dp))
             }

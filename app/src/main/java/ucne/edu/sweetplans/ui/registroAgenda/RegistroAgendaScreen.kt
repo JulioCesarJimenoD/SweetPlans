@@ -8,18 +8,24 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import ucne.edu.sweetplans.ui.navegation.navegation
 import java.util.*
 
 
-@Preview(showBackground = true, showSystemUi = true)
+//@Preview(showBackground = true, showSystemUi = true)
 @Composable
 
 fun RegistroAgendaScreen() {
 
     val ScaffoldState = rememberScaffoldState()
+
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -30,14 +36,14 @@ fun RegistroAgendaScreen() {
             .fillMaxWidth()
             .padding(8.dp)) {
 
+           FechaDate(context)
+
             OutlinedTextField(
                 value = "",
                 onValueChange = {} ,
-                label = { Text(text = "Marca")},
-                modifier = Modifier.fillMaxWidth(),
-                //leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription ="") }
+                label = { Text(text = "Tarea")},
+                modifier = Modifier.fillMaxWidth())
 
-            )
             Spacer(modifier = Modifier.padding(10.dp))
 
             OutlinedTextField(
@@ -46,24 +52,24 @@ fun RegistroAgendaScreen() {
                 label = { Text(text = "Descripcion")},
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                // leadingIcon = { Icon(imageVector = Icons.Default.Streetview, contentDescription ="") }
+                    .padding(vertical = 8.dp))
 
-            )
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Agregar")
+            }
             navegation()
-
         }
 
     }
-//    navegation()
 
 }
 
 
 @Composable
+
 fun FechaDate(context: Context) {
-
-
     val año: Int
     val mes: Int
     val dia: Int
@@ -86,10 +92,12 @@ fun FechaDate(context: Context) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Seleciones la fecha: ${date.value}")
 
-        Button(onClick = { datePickerDialog }) {
-
-        }
+        OutlinedTextField(value = date.value, onValueChange = {datePickerDialog},
+                label = { Text(text = "Seleciones la fecha")},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp))
+//
     }
 }

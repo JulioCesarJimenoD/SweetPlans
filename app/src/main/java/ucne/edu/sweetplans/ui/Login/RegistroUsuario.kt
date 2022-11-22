@@ -28,6 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import ucne.edu.sweetplans.R
 import ucne.edu.sweetplans.ui.navegation.Screen
+import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgendaScreen
 
 
 @OptIn(ExperimentalUnitApi::class)
@@ -100,16 +101,6 @@ fun RegistroUsiario(
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(0.8f)
                     )
-
-                   /* OutlinedTextField(
-                        value = phoneValue.value,
-                        onValueChange = { phoneValue.value = it },
-                        label = { Text(text = "Tel.") },
-                        placeholder = { Text(text = "Tel.") },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth(0.8f),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
-                    )*/
 
                     OutlinedTextField(
                         value = passwordValue.value,

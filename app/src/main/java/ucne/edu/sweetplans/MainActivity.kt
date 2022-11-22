@@ -18,6 +18,8 @@ import ucne.edu.sweetplans.ui.Inicio.IncioScreen
 import ucne.edu.sweetplans.ui.Login.LoginScreen
 import ucne.edu.sweetplans.ui.Login.RegistroUsiario
 import ucne.edu.sweetplans.ui.navegation.Screen
+import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
+import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgendaScreen
 import ucne.edu.sweetplans.ui.theme.SweetPlansTheme
 
 @AndroidEntryPoint
@@ -53,5 +55,11 @@ fun MyApp(){
             IncioScreen(navHostController = navHostController)
         }
 
+//        composable(Screen.RegistroAgenda.route){
+//            RegistroAgendaScreen(navHostController = navHostController)
+//        }
+//        composable(Screen.ConsultaScreen.route){
+//            ConsultaScreen(navHostController = navHostController)
+//        }
     }
 }
