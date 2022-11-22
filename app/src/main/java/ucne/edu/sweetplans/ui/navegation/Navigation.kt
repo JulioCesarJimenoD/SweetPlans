@@ -50,7 +50,7 @@ fun navegation(){
 
                 /* Bottom app bar content */
                 Spacer(modifier = Modifier.padding(5.dp))
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { }) {
                     Icon(Icons.Filled.Home,
                         contentDescription = "Lista de tarea",
                     modifier = Modifier.size(40 .dp))

@@ -7,20 +7,22 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
-import ucne.edu.sweetplans.model.RegistroAgenda
+import ucne.edu.sweetplans.model.Agenda
 
 @Dao
 interface RegistroAgendaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun Insertar (registroAgenda: RegistroAgenda)
+    suspend fun Insertar (agenda: Agenda)
 
-    @Query("SELECT * FROM RegistroAgenda ORDER BY registroId")
-    fun gesList(): Flow<List<RegistroAgenda>>
+    @Query("SELECT * FROM Agendas ORDER BY agendaId")
+    fun gesList(): Flow<List<Agenda>>
 
     @Delete
-    suspend fun Eliminar(registroAgenda: RegistroAgenda)
+    suspend fun eliminar(agenda: Agenda)
 
     @Update
-    suspend fun Modificar(registroAgenda: RegistroAgenda)
+    suspend fun Modificar(agenda: Agenda)
+
+
 }

@@ -4,13 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import ucne.edu.sweetplans.data.dao.RegistroAgendaDao
 import ucne.edu.sweetplans.data.dao.UsuarioDao
-import ucne.edu.sweetplans.model.Actividad
-import ucne.edu.sweetplans.model.RegistroAgenda
+import ucne.edu.sweetplans.model.Agenda
 import ucne.edu.sweetplans.model.Usuario
-import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgenda
 
 @Database(
-    entities = [Usuario ::class , RegistroAgenda :: class],
+    entities = [Usuario ::class , Agenda :: class],
     exportSchema = false,
     version = 1
 )
