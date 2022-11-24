@@ -14,42 +14,36 @@ import androidx.navigation.NavHostController
 import ucne.edu.sweetplans.ui.navegation.navegation
 
 @Composable
- fun ConsultaScreen(navHostController: NavHostController,
-                    agendaViewModel: AgendaViewModel = hiltViewModel()
-){
-    val ScaffoldState = rememberScaffoldState()
+ fun ConsultaScreen(
+    agendaViewModel: AgendaViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
+    val ConsultaAgenda = agendaViewModel.agenda.collectAsState(initial = emptyList() )
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(text = "Consulta") })
-        }
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
     ){
-        it
-        val ConsultaAgenda = agendaViewModel.agenda.collectAsState(initial = emptyList() )
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()){
-
-            items(ConsultaAgenda.value){agenda ->
-
-                Column(modifier = Modifier.fillMaxWidth())
-                {
-                    Row(modifier = Modifier
+        items(ConsultaAgenda.value){ agenda ->
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier
                         .fillMaxWidth()
                         .height(30.dp)
                         .padding(vertical = 2.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text(text = "${agenda.nombreAgenda}")
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "${agenda.nombreAgenda}")
 
-                        Text(text = "${agenda.descripcion}",
-                            style = MaterialTheme.typography.h5)
-                    }
+                    Text(
+                        text = "${agenda.descripcion}",
+                        style = MaterialTheme.typography.h5
+                    )
                 }
             }
         }
-        navegation()
-
     }
  }
+
+

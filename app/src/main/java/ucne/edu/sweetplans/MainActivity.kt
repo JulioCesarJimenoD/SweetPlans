@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ucne.edu.sweetplans.ui.Inicio.IncioScreen
 import ucne.edu.sweetplans.ui.Login.LoginScreen
 import ucne.edu.sweetplans.ui.Login.RegistroUsiario
+import ucne.edu.sweetplans.ui.navegation.Home
 import ucne.edu.sweetplans.ui.navegation.Screen
 import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
 import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgendaScreen
@@ -33,33 +36,36 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyApp()
+                    val navController = rememberNavController()
+                    inicio(navController)
+
+
                 }
             }
         }
     }
 }
 
+
+
+
 @Composable
-fun MyApp(){
-    val navHostController = rememberNavController()
+private fun inicio(navHostController: NavHostController) {
 
     NavHost(navController = navHostController, startDestination = Screen.LoginScreen.route){
+
         composable(Screen.LoginScreen.route){
-            LoginScreen(navHostController = navHostController)
-        }
-        composable(Screen.RegistroUsuarios.route){
-            RegistroUsiario(navHostController = navHostController)
-        }
-        composable(Screen.InicioScreen.route){
-            IncioScreen(navHostController = navHostController)
+            LoginScreen(navHostController)
         }
 
-//        composable(Screen.RegistroAgenda.route){
-//            RegistroAgendaScreen(navHostController = navHostController)
-//        }
-//        composable(Screen.ConsultaScreen.route){
-//            ConsultaScreen(navHostController = navHostController)
-//        }
+        composable(Screen.Home.route){
+            Home(navHostController)
+        }
+
+        composable(Screen.RegistroUsuarios.route){
+            RegistroUsiario(navHostController)
+        }
+
+
     }
 }

@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ucne.edu.sweetplans.ui.navegation.Home
 import ucne.edu.sweetplans.ui.navegation.Screen
 import ucne.edu.sweetplans.ui.navegation.navegation
 import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
@@ -40,7 +41,7 @@ import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreen(
-    navHostController: NavHostController,
+    navController: NavController,
     usuarioViewModel: UsuarioViewModel = hiltViewModel(),
 
     ) {
@@ -91,6 +92,7 @@ fun LoginScreen(
                 )
             )
             Spacer(modifier = Modifier.padding(20.dp))
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 OutlinedTextField(
                     value = emailValue.value,
@@ -113,6 +115,7 @@ fun LoginScreen(
                         }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.password_eye_foreground),
+                                modifier = Modifier.size(5.dp),
                                 contentDescription = null,
                                 tint = if (passwordVisibility.value) MaterialTheme.colors.primary else Color.Gray
                             )
@@ -147,18 +150,14 @@ fun LoginScreen(
                 ) {
                     Button(
                         onClick = {
-                                  navHostController.navigate(Screen.ConsultaScreen.route)
+                                  navController.navigate(Screen.Home.route)
                         }, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                     ) {
                         Text(
                             text = "Aceptar",
-                            fontSize = TextUnit(20F, TextUnitType.Sp),
-                            modifier = Modifier.clickable(onClick = {
-                                navHostController.navigate(Screen.InicioScreen.route)
-
-                            })
+                            fontSize = TextUnit(20F, TextUnitType.Sp)
                         )
 
                     }
@@ -167,7 +166,11 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.padding(20.dp))
                 Text(
                     text = "Registrar",
-                    modifier = Modifier.clickable(onClick = {navHostController.navigate(Screen.RegistroUsuarios.route)})
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            navController.navigate(Screen.RegistroUsuarios.route)
+                        }
+                    )
                 )
                 Spacer(modifier = Modifier.padding(20.dp))
             }

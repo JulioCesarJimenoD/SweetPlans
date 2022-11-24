@@ -34,7 +34,7 @@ import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgendaScreen
 @OptIn(ExperimentalUnitApi::class)
 @Composable
 fun RegistroUsiario(
-    navHostController: NavHostController,
+    navController: NavController,
     usuarioViewModel: UsuarioViewModel = hiltViewModel()
 ) {
 
@@ -82,7 +82,7 @@ fun RegistroUsiario(
                         letterSpacing = TextUnit(2F, TextUnitType.Sp)
                     )
                 )
-                Spacer(modifier = Modifier.padding(20.dp))
+                Spacer(modifier = Modifier.padding(15.dp))
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     OutlinedTextField(
                         value = nameValue.value,
@@ -145,22 +145,21 @@ fun RegistroUsiario(
                     )
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = { }, modifier = Modifier
+                    Button(onClick = { navController.navigate(Screen.LoginScreen.route)}, modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp)) {
-                        Text(text = "Registrar", fontSize =  TextUnit(20F, TextUnitType.Sp))
+                        Text(text = "Registrar", fontSize =  TextUnit(15F, TextUnitType.Sp))
                     }
+
 
                     Text(
                         text = "Login",
-                        modifier = Modifier.clickable(onClick = {
-                            navHostController.navigate(Screen.LoginScreen.route)
+                        modifier =
+                        Modifier.clickable(onClick = {
+                            navController.navigate(Screen.LoginScreen.route)
                         })
                     )
-                    Spacer(modifier = Modifier.padding(20.dp))
-
-
-
+//                    Spacer(modifier = Modifier.padding(20.dp))
                 }
         }
     }

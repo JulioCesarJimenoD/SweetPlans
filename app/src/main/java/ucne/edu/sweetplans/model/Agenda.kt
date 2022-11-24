@@ -10,6 +10,7 @@ data class Agenda(
     val agendaId : Int? = null,
     val nombreAgenda : String,
     val descripcion: String,
+//    val fecha : DatePicker,
 
 //    hacer una variable para trabajar con el datapicker
 

@@ -8,7 +8,9 @@ sealed class Screen(
     object LoginScreen: Screen("LoginScreen")
     object InicioScreen: Screen("InicioScreen")
     object ConsultaScreen: Screen ("ConsultaScreen")
-    object RegistroAgenda: Screen("RegistroAgendaScreen")
+    object RegistroAgendaScreen: Screen("RegistroAgendaScreen")
+    object PantallaPruebaScreen: Screen("PantallaPruebaScreen")
     object Navegation: Screen("Navegation")
+    object Home: Screen("Home")
 
 }
