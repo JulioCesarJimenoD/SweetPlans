@@ -6,8 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ucne.edu.sweetplans.ui.Inicio.IncioScreen
-import ucne.edu.sweetplans.ui.Login.LoginScreen
-import ucne.edu.sweetplans.ui.Login.RegistroUsiario
 import ucne.edu.sweetplans.ui.registroAgenda.ConsultaScreen
 import ucne.edu.sweetplans.ui.registroAgenda.RegistroAgendaScreen
 

@@ -19,7 +19,7 @@ interface RegistroAgendaDao {
     fun gesList(): Flow<List<Agenda>>
 
     @Delete
-    suspend fun eliminar(agenda: Agenda)
+    suspend fun Eliminar(agenda: Agenda)
 
     @Update
     suspend fun Modificar(agenda: Agenda)

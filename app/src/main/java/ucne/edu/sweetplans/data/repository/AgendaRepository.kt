@@ -12,6 +12,8 @@ class AgendaRepository @Inject constructor(
     suspend fun Insertar(agenda: Agenda) =
         db.RegistroAgendaDao.Insertar(agenda)
 
+    suspend fun Eliminar(agenda: Agenda) = db.RegistroAgendaDao.Eliminar(agenda)
+
     fun getList(): Flow<List<Agenda>> = db.RegistroAgendaDao.gesList()
 
 }

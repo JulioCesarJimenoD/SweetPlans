@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ucne.edu.sweetplans.data.repository.AgendaRepository
 import ucne.edu.sweetplans.model.Agenda
@@ -21,6 +22,7 @@ class AgendaViewModel @Inject constructor(
 
     var nombreAgenda by mutableStateOf("")
     var descripcion by mutableStateOf("")
+    var fecha by mutableStateOf("")
     var agenda = agendaRepository.getList()
     private set
 
@@ -30,10 +32,18 @@ class AgendaViewModel @Inject constructor(
                 Agenda(
                     agendaId = 0,
                     nombreAgenda = nombreAgenda,
-                    descripcion = descripcion
+                    descripcion = descripcion,
+                    fecha = fecha
                 )
             )
         }
+    }
+
+    fun Eliminar(agenda: Agenda){
+        viewModelScope.launch(Dispatchers.IO){
+            agendaRepository.Eliminar(agenda)
+        }
+
     }
 
 

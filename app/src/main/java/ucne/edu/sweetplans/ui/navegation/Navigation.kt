@@ -44,19 +44,16 @@ fun navegation(
     val currentDestination = navBackStackEntry?.destination
     val selected = remember { mutableStateOf(false) }
     val scale = animateFloatAsState(if (selected.value) 2f else 1f)
+
     val text = listOf(
         "Registro",
-        "Consulta",
-//        "ListaPendientes",
-//        "InicioScreen"
+        "Consulta"
 
     )
 
     val iconos = listOf(
         R.drawable.edit,
-        R.drawable.home,
-//        R.drawable.pendiente,
-//        R.drawable.home
+        R.drawable.home
     )
     NavigationBar(
         containerColor = Color.Green,

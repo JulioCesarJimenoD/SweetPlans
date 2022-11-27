@@ -10,93 +10,138 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import ucne.edu.sweetplans.R
 import ucne.edu.sweetplans.ui.navegation.navegation
 import java.util.*
 
 
 @Composable
 fun RegistroAgendaScreen(
-    /*viewModel: AgendaViewModel = hiltViewModel()*/
+    viewModel: AgendaViewModel = hiltViewModel()
 ) {
 
     val ScaffoldState = rememberScaffoldState()
+    var validarNombre by remember { mutableStateOf(false)  }
+    var validarDescripcion by remember { mutableStateOf(false)}
 
     val context = LocalContext.current
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(8.dp)
-    ) {
-
-       FechaDate(context)
-
-        OutlinedTextField(
-            value = "",
-            onValueChange = {} ,
-            label = { Text(text = "Tarea")},
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        OutlinedTextField(
-            value = "",
-            onValueChange = {} ,
-            label = { Text(text = "Descripcion") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        )
-
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        Button(
-            onClick = {
-                Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show()
-            }
-        ) {
-            Text(text = "Agregar")
-        }
-    }
-}
 
 
-@Composable
-fun FechaDate(context: Context) {
-    val año: Int
-    val mes: Int
-    val dia: Int
+    val c = Calendar.getInstance()
+    val año = c.get(Calendar.YEAR)
+    val mes = c.get(Calendar.MONTH)
+    val dia = c.get(Calendar.DAY_OF_MONTH)
 
-    val calendario = Calendar.getInstance()
-    año = calendario.get(Calendar.YEAR)
-    mes = calendario.get(Calendar.MONTH)
-    dia = calendario.get(Calendar.DAY_OF_MONTH)
-    calendario.time = Date()
-
-    val date = remember { mutableStateOf("") }
-
+    var textfecha by remember { mutableStateOf("")}
     val datePickerDialog = DatePickerDialog(
-        context, { _: DatePicker, year: Int, month: Int, dayOfMonth: Int
-            ->
-            date.value = "$dayOfMonth/$month/$year"
-        }, año, mes, dia
+        context,
+        { datePicker,year,mon,day ->
+            val month = mon + 1
+            textfecha = " Fecha: $day - $month - $year"
+        },año,mes,dia
     )
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
 
-        OutlinedTextField(
-            value = date.value, onValueChange = {datePickerDialog},
-            label = { Text(text = "Seleciones la fecha")},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 10.dp)
-        )
+
+    Scaffold (
+        topBar = {
+            TopAppBar(title = { Text(text = "Tarea")})
+        },
+
+
+        scaffoldState = ScaffoldState
+
+    )
+    {
+        it
+
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center)
+        {
+            Spacer(modifier = Modifier.padding(20.dp))
+
+
+            Button(onClick = {datePickerDialog.show()},
+                contentPadding = PaddingValues(
+                    start = 20.dp,
+                    top = 12.dp,
+                    end = 20.dp,
+                    bottom = 12.dp
+                )){
+                Icon(painter = painterResource(id = R.drawable.calendario),
+                    contentDescription = "Fecha",
+                    modifier = Modifier.size(ButtonDefaults.IconSize))
+                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Text("Selecione Fecha")
+            }
+            //TextField
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            OutlinedTextField(value = viewModel.nombreAgenda,
+                onValueChange = {viewModel.nombreAgenda = it},
+                label = { Text(text = "Tarea")},
+                placeholder = { Text(text = "Tarea")},
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(0.8f)
+            )
+            Spacer(modifier = Modifier.padding(15.dp))
+
+            OutlinedTextField(value = viewModel.descripcion, onValueChange = {viewModel.descripcion = it},
+                label = { Text(text = "Descripción")},
+                placeholder = { Text(text = "Descripción")},
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+
+            )
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            //  Text de las fecha
+            Text( text = "${textfecha}", fontWeight = FontWeight.Medium)
+
+            Spacer(modifier = Modifier.padding(40.dp))
+            Button(onClick = {
+                validarNombre = viewModel.nombreAgenda.isBlank()
+                validarDescripcion = viewModel.descripcion.isBlank()
+
+                if (viewModel.nombreAgenda == ""){
+                    Toast.makeText(context, "El nombre no debe estar vacio", Toast.LENGTH_SHORT).show()
+                }
+                if (viewModel.descripcion == ""){
+                    Toast.makeText(context, "La descripción no debe estar vacio", Toast.LENGTH_SHORT).show()
+                }
+
+                if(!validarNombre && !validarDescripcion){
+                    viewModel.Guardar()
+                    Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show()
+
+
+                }else{
+                    Toast.makeText(context, " No fue guardado verifica los datos", Toast.LENGTH_SHORT).show()
+                }
+            },
+                contentPadding = PaddingValues(
+                    start = 20.dp,
+                    top = 12.dp,
+                    end = 20.dp,
+                    bottom = 12.dp
+                )){
+                Icon(painter = painterResource(id = R.drawable.save),
+                    contentDescription = "Guardar tarea",
+                    modifier = Modifier.size(ButtonDefaults.IconSize))
+                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Text("Guardar")
+            }
+        }
     }
 }
