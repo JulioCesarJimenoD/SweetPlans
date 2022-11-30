@@ -30,22 +30,17 @@ fun Home(navController: NavHostController) {
 @Composable
 fun MyApp(navHostController: NavHostController) {
 
-    NavHost(navController = navHostController, startDestination = Screen.RegistroAgendaScreen.route){
+    NavHost(navController = navHostController, startDestination = Screen.InicioScreen.route){
 
-        composable(Screen.RegistroAgendaScreen.route){
-            RegistroAgendaScreen()
-        }
         composable(Screen.InicioScreen.route){
             IncioScreen(navHostController)
         }
-
         composable(Screen.RegistroAgendaScreen.route){
             RegistroAgendaScreen()
         }
+
         composable(Screen.ConsultaScreen.route){
             ConsultaScreen()
         }
-
-        
     }
 }

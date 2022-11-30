@@ -57,12 +57,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
                         Text(text = "Tarea: ${agenda.nombreAgenda}")
                         Text(text = "Descripcion: ${agenda.descripcion}")
                         Text(text = "Fecha:  ${agenda.fecha}")
-                        IconButton(onClick = { viewModel.Eliminar(agenda) })
-                        {
-                            Icon(imageVector = Icons.Filled.Clear,
-                                contentDescription = "Listo",
-                                tint = Color.Red, modifier = Modifier.size(10.dp))
-                        }
+//                        IconButton(onClick = { viewModel.Eliminar(agenda) })
+//                        {
+//                            Icon(imageVector = Icons.Filled.Clear,
+//                                contentDescription = "Listo",
+//                                tint = Color.Red, modifier = Modifier.size(10.dp))
+//                        }
                     }
                 }
             }
